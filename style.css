@@ -1,0 +1,78 @@
+:root {
+  --bell-purple: #702082;
+  --baja-teal: #10b5cb;
+  --cheese-gold: #ffc627;
+  --cubicle-beige: #eae6df;
+  --fire-red: #d62300;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: #1a0a1f;
+  color: var(--cubicle-beige);
+  font-family: "Montserrat", system-ui, sans-serif;
+  overflow: hidden;
+}
+
+#game-shell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 12px;
+  gap: 10px;
+}
+
+#game-header {
+  text-align: center;
+}
+
+#game-header h1 {
+  font-family: "Fugaz One", "Montserrat", sans-serif;
+  font-size: 28px;
+  margin: 0;
+  color: var(--cheese-gold);
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 0 var(--bell-purple);
+}
+
+.subtitle {
+  font-size: 13px;
+  margin: 4px 0 0;
+  opacity: 0.75;
+  font-family: "Roboto Mono", monospace;
+}
+
+canvas#game {
+  display: block;
+  background: #000;
+  border: 4px solid var(--bell-purple);
+  border-radius: 6px;
+  box-shadow: 0 0 0 2px var(--cheese-gold), 0 8px 24px rgba(0,0,0,0.6);
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+
+  /* Fit on screen — scale down if needed, keep aspect ratio */
+  max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 160px);
+  width: auto;
+  height: auto;
+  aspect-ratio: 960 / 704;
+}
+
+#game-footer {
+  font-family: "Roboto Mono", monospace;
+  font-size: 11px;
+  opacity: 0.5;
+}
+
+@media (max-width: 720px) {
+  #game-header h1 { font-size: 20px; }
+  .subtitle { font-size: 11px; }
+}
