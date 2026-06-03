@@ -162,7 +162,7 @@ const BOSSES = {
   quesarito: {
     name: 'THE QUESARITO',
     tileCode: 6, hp: 150, sprite: 'quesarito',
-    issue: 'Three brand leads. Three strategies. One live campaign. Nobody knows which inputs drive the outcome because nobody\'s stayed long enough to find out. The media partner has been emailing Jordan for six weeks. Jordan works at Chipotle now.',
+    issue: 'Two different brand leads. Three strategies. One live campaign. Nobody knows which inputs drive the outcome because nobody\'s stayed long enough to find out. The media partner has been emailing Jordan for six weeks. Jordan works at Chipotle now.',
     reward: 'Mild Sauce Packet',
     unlocks: 'Network Shape',
     fit: {
@@ -665,7 +665,7 @@ function attemptMove(d) {
       if (dname && !isDoorOpen(dname)) {
         let txt = 'This door is locked.';
         if (dname === 'ceo') {
-          txt = 'BOARDROOM is locked. Defeat The OG Crunchy Taco for the Diablo Sauce Packet.';
+          txt = 'BOARDROOM is locked. Defeat The Mexican Pizza for the Diablo Sauce Packet.';
         } else {
           const requiredBoss = DOOR_REQUIRES_DEFEAT[dname];
           if (requiredBoss && BOSS_DISPLAY[requiredBoss]) {
@@ -1066,8 +1066,8 @@ function finishBattle(victory) {
     // Announce next progression step explicitly
     const nextStep = {
       quesarito:        'BAJA BLAST now lurks in the Cross-Functional Corridor.',
-      baja_blast:       'The BREAK ROOM door is now OPEN. Mexican Pizza waits there.',
-      mexican_pizza:    'The EXEC FLOOR door is now OPEN. The OG Crunchy Taco awaits.',
+      baja_blast:       'The BREAK ROOM door is now OPEN. The OG Crunchy Taco waits there.',
+      mexican_pizza:    'The EXEC FLOOR door is now OPEN. The Mexican Pizza awaits.',
       og_crunchy_taco:  'BOARDROOM door is now OPEN. The Crunchwrap Supreme is the final fight.',
     }[b.bossKey];
     if (nextStep) toastParts.push(nextStep);
