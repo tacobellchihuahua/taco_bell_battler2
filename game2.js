@@ -68,52 +68,52 @@ function playMusic(track) {
 // DATA: Framework moves (each has a tier 4→1 with damage 40/30/20/5)
 // -----------------------------------------------------------------------------
 const FRAMEWORKS = {
-  'Coordination': [
-    { dmg: 40, text: "Let's map out a RACI before anyone else rotates off. One owner per workstream. In a doc. Not in Jordan's head. Jordan is at Chipotle." },
-    { dmg: 30, text: "Let's set up a weekly sync between leads so the agency is never pinging four people at once wondering which one is real." },
-    { dmg: 20, text: "We are missing the big picture. Three brand leads left three different strategies and nobody wrote any of them down." },
-    { dmg: 5,  text: "Let's just split the campaign 50/50 and regroup the day before launch. Two owners is basically one owner.", trap: true },
+  'Expectancy Theory': [
+    { dmg: 40, text: "The motivation math is multiplicative. E-to-P times P-to-O times Valence. If any term is zero the product is zero. E-to-P is broken here because the brief changes every rotation and nobody knows which inputs drive outcomes. You cannot motivate your way out of a broken causal chain. Fix the chain." },
+    { dmg: 30, text: "P-to-O is invisible here. Strong campaign work does not reliably produce recognition, promotion, or continued ownership. The reward for a successful launch is a new assignment to something you have never touched. That is a negative valence dressed as a career benefit. The incentive system is lying about what it rewards." },
+    { dmg: 20, text: "Valence is the term everyone skips. The org keeps offering enterprise mindset as the upside of rotation. The brand lead six months into a relaunch does not want breadth right now. They want to finish the thing they started. You are offering a reward that does not match what the person actually values. That is a valence mismatch." },
+    { dmg: 5,  text: "If we improve the onboarding deck and send a welcome gift basket the motivation numbers will go up. The basket has a Live Mas mug and a Taco Bell gift card. It is genuine and the amount is non-trivial.", trap: true },
   ],
-  'Networks': [
-    { dmg: 40, text: "I know the agency contact from the last Baja Blast activation. Still in my phone. Under Baja Blast Guy. I did not save his real name but I have his number and that is what matters right now." },
-    { dmg: 30, text: "Let's grab a coffee. Not a sync. Not a standup. Not a 30-person Zoom where nobody has their camera on. A coffee. One person. Fifteen minutes. Radical concept." },
-    { dmg: 20, text: "You have introduced yourself to six brand leads in four years. I know. I read the email thread. All forty-seven replies. I am asking you to do it one more time." },
-    { dmg: 5,  text: "I will add everyone to a LinkedIn group and post a thought leadership piece about synergy. That counts as networking.", trap: true },
+  'Job Char. Model': [
+    { dmg: 40, text: "Three of five JCM dimensions are disrupted by rotation. Task identity: gone — brand leads rotate before projects ship. Feedback: reset — a new coach every cycle means no signal about prior work. Autonomy: collapsed — you are still learning the org when you are already expected to lead. The model requires all three critical psychological states. Skill variety alone does not carry it." },
+    { dmg: 30, text: "Feedback is the most underrated dimension and the first one rotation destroys. Without a stable coach relationship, autonomy does not feel like trust. It feels like abandonment. The brand lead is driving blind. They cannot self-correct without a signal and the signal changes every six months with the rotation schedule." },
+    { dmg: 20, text: "Skill variety is the one JCM dimension rotation actually improves. The org knows this. The poster knows this. But the model is multiplicative in effect even when the dimensions look additive. One dimension does not compensate for three missing. Meaningfulness and responsibility without knowledge of results is just stress with good intentions." },
+    { dmg: 5,  text: "We should add more stretch assignments. Six product lines in three years is six dimensions of skill variety. The number of JCM boxes checked looks excellent in the deck. Exposure is the fix.", trap: true },
   ],
-  'Motivation': [
-    { dmg: 40, text: "I am giving you end-to-end ownership of this campaign. Not just the execution. The strategy. The agency relationship. The brief. All of it. And I am not rotating off before it ships." },
-    { dmg: 30, text: "I trust your expertise. You have been here longer than any brand lead assigned to this item. I am stepping back and I mean it this time." },
-    { dmg: 20, text: "We keep asking for institutional knowledge and then rotating the people who have it. That is not an accident. That is a design flaw." },
-    { dmg: 5,  text: "If you hit this KPI I will give you a shoutout in the all-hands and nominate you for a Live Mas award. The trophy is a hot sauce packet in a frame.", trap: true },
+  'Crowding Out': [
+    { dmg: 40, text: "The retention bonus converted a career commitment into a transaction. Before the bonus, staying through launch was a professional norm — a matter of craft and ownership. After, it became a service with a price. The brand lead who was already intrinsically motivated now has a signal that staying is unpleasant enough to require payment. Gneezy and Rustichini called this in 2000. It is not new." },
+    { dmg: 30, text: "The weekly check-in template, the tracking dashboard, and the QBR sent a signal: we do not trust you to drive this. The brand lead responded by managing the process instead of the campaign. You optimized for measurement and lost the thing you were trying to measure. Monitoring undermines autonomy. That is not a side effect. That is the mechanism." },
+    { dmg: 20, text: "Heath ran this at Citibank. Managers ranked pay and job security as the top motivators. Employees ranked interesting work and learning first. You keep pulling extrinsic levers because you can see them. The intrinsic levers are harder to see. That is not a reason to ignore them. That is a reason to actually look." },
+    { dmg: 5,  text: "We should implement a completion bonus. If they hit the KPI we give them a callout in the all-hands and a Taco Bell gift card. People respond to incentives. There is some irony in the gift card but the intent is genuine.", trap: true },
   ],
-  'Change Mgmt': [
-    { dmg: 40, text: "Here is a small, low-risk pilot. Two items. One quarter. We measure what rotation actually costs versus what the laminated poster says it delivers. If the poster is right we will make more posters." },
-    { dmg: 30, text: "I pulled data from the last three Mexican Pizza relaunches. Different brand lead each time. Zero institutional knowledge carried forward. One brief referenced a campaign that was discontinued in 2019. The data is not subtle." },
-    { dmg: 20, text: "Based on the Doritos Locos Taco launch, I know we can pull this off. They stayed the course. They did not rotate the inventor to the Cinnamon Twists account. It worked out okay." },
-    { dmg: 5,  text: "Leadership says we have to do it this way so just get on board. The Crunchwrap has held its shape since 2005. Who are we to question the hexagon.", trap: true },
+  'Folly: A→B': [
+    { dmg: 40, text: "You measure rotation compliance and call it agility. You reward breadth and call it development. Wells Fargo hoped for customer relationships and rewarded accounts opened. You hope for institutional knowledge and campaign continuity and reward rotation velocity. The diagnostic question is not what do you want. It is what does your incentive system actually reward. Those are almost never the same answer." },
+    { dmg: 30, text: "The performance review rewards brand leads who rotate gracefully. Adaptable. Enterprise mindset. Growth orientation. There is no rubric item for stayed long enough to actually finish the thing. The system is selecting for the behavior you do not want by failing to measure the behavior you do want. Not by accident. Because measuring continuity is harder than measuring compliance." },
+    { dmg: 20, text: "What behavior does your incentive system actually reward? Rotation velocity. Breadth of exposure. Being agreeable when your lead says it is time to move. That is not what you want. You want someone who knows where the files are, has the agency contact in their actual phone, and was there for the last three decisions. You are rewarding the opposite. On a laminated poster." },
+    { dmg: 5,  text: "We should add campaign completion to the performance rubric. As item nine of twelve. Weighted equally with stakeholder communication. That should rebalance the incentive structure. The checkbox is adjacent to the enterprise mindset box. We will see which one gets filled in.", trap: true },
   ],
-  'Culture': [
-    { dmg: 40, text: "We say Live Mas. It is on the wall. It is on the mug. It is on the hot sauce packet. And then we rotate the brand lead off the Mexican Pizza relaunch two months before launch. Those two things are not the same thing." },
-    { dmg: 30, text: "Let's celebrate the teams that built something and stayed long enough to see it land. Put it in the all-hands. Put it on a poster. Laminate the poster. You know how we feel about lamination." },
-    { dmg: 20, text: "We reward agility on slide two and then wonder why nobody has executed slide four. These facts are connected. Nobody has connected them out loud until now." },
-    { dmg: 5,  text: "Let's put the values on a new poster in the break room. Bigger font this time. Right next to the Baja Blast dispenser. Culture fixed.", trap: true },
+  'Tight / Loose': [
+    { dmg: 40, text: "Taco Bell runs tight culture on operations and loose culture on campaign ownership. Those are backwards. Food safety norms are tight and non-negotiable — deviation gets corrected fast. But who owns which campaign through launch is treated as flexible and subject to rotation. High-reliability work requires tight norms. You need to consciously choose where tightness applies. Right now it drifted toward the wrong things." },
+    { dmg: 30, text: "The Doritos Locos Taco succeeded because ownership norms were held tight all the way to ship. One lead. One brief. One agency relationship. They did not rotate the inventor to the Cinnamon Twists account at the forty-yard line. Loose culture enables experimentation. Loose culture on campaign ownership is not experimentation. It is neglect with a philosophy attached." },
+    { dmg: 20, text: "The org knows how to be tight. Franchise compliance. Supply chain. Food safety audits. The muscle exists. The decision to keep campaign ownership norms loose is a choice the org keeps making. You can apply that same operational tightness to the question of who owns what launch through completion. The capability is available. Nobody has asked for it on the brand side." },
+    { dmg: 5,  text: "We should put the campaign ownership norms in a new onboarding module. Mandatory. In the learning portal under Culture and Values. Nobody has completed the 2021 module but the intent is strong and the formatting is professional.", trap: true },
   ],
-  'Feedback': [
-    { dmg: 40, text: "When the brief landed with no context the agency had to guess. They guessed wrong. They pitched a Volcano Taco revival. The Volcano Taco has been discontinued twice. Next rotation gets a handoff doc. Mandatory. Laminated if necessary." },
-    { dmg: 30, text: "Can you help me understand what has not been working? I am taking notes. In a real doc. With a title that is not just my name and the date. I will share it before I rotate off. I promise." },
-    { dmg: 20, text: "The last three rotations failed to transfer anything. That is not a people problem. That is a Crunchwrap problem. The hexagon is sealed. Nothing gets out." },
-    { dmg: 5,  text: "Great work on the Q3 deck. Very bold. Very Live Mas. What is your name again. Are you the new Jordan.", trap: true },
+  'Network Shape': [
+    { dmg: 40, text: "The network signature here is exactly wrong. Internal density is near zero — the brand lead has been here eleven days and has not built trust or communication patterns with cross-functional partners. External range is fragmented across four people who each believe they are the POC. Projects that deliver need high internal density and high external range. You have low both. That is the isolated-and-slow failure mode." },
+    { dmg: 30, text: "The cross-functional partners stopped building relationships with brand leads. Not because they are difficult. Because the last six brand leads rotated within the year. They learned that investing in the relationship does not persist. Internal density is not just low. It has been deliberately suppressed by the rotation pattern. The partners are not being resistant. They are being rational." },
+    { dmg: 20, text: "The previous brand lead had the agency contact. In their phone. Under Baja Blast Guy. They did not save his real name but they had the number and the Slack and the institutional shorthand. That informal network had everything this launch needs. Informal networks do not survive rotation. The node leaves and the connection goes with it. Document the network before you rotate the node." },
+    { dmg: 5,  text: "I will post in the all-brands Slack asking if anyone has agency contacts to share. I am also creating a LinkedIn group for this launch. Forty-three members. No posts yet but the cover image is a Baja Blast and the name is professional.", trap: true },
   ],
-  'Negotiation': [
-    { dmg: 40, text: "You take the Baja Blast activation. I take the Mexican Pizza relaunch. We split the agency contacts. We document everything. Nobody emails Jordan. Jordan is at Chipotle. This is called a deal." },
-    { dmg: 30, text: "I sat through the thirty-person sync. I was on the thread with fourteen people. I found Baja Blast Guy in my contacts. I am asking for one coffee and your transition doc. That is a reasonable trade." },
-    { dmg: 20, text: "Three other brand leads claimed this launch. None of them wrote anything down. The Google Drive folder is called FINAL v3 USE THIS ONE. There is no version four. We can do better." },
-    { dmg: 5,  text: "It is my way or the highway. I do not negotiate with hexagons. The Crunchwrap will respect my authority.", trap: true },
+  'Incentive Compat.': [
+    { dmg: 40, text: "The brand lead who wrote this campaign strategy was rotated to the Cantina line eight months ago. The current lead has been here eleven days. The proposer has no stake in whether it ships well. The implementer has no stake in honoring what was proposed. This is not a personnel problem. It is structural. Incentive compatibility between idea generation and implementation is zero." },
+    { dmg: 30, text: "Directors propose the strategy. Brand leads implement it. Directors are rewarded for quality of the slide. Brand leads are rewarded for execution compliance against a brief they did not write. Nobody is rewarded for the full chain from proposal through launch outcome. You are rewarding idea submission and hoping for implemented innovation. Kerr called this in 1975. The org chart has changed. The structure has not." },
+    { dmg: 20, text: "This brief has been through three brand leads. Each one received it, re-read the strategy section, asked clarifying questions, made small adaptations, and rotated before finding out if their changes worked. The learning loop is broken across time. The proposer cannot learn from implementation. The implementer cannot learn from the original context. Incompatible incentives compound with every handoff." },
+    { dmg: 5,  text: "We should schedule a thirty-minute handoff between the outgoing and incoming brand lead. The outgoing lead will share the link to FINAL v3 USE THIS ONE. The incoming lead will nod. We will call it a knowledge transfer. It is a polite goodbye with a folder link.", trap: true },
   ],
 };
 
 // Canonical display order — all are visible in the menu; locked ones render greyed out.
-const ALL_FRAMEWORKS = ['Coordination', 'Networks', 'Motivation', 'Change Mgmt', 'Culture', 'Feedback', 'Negotiation'];
+const ALL_FRAMEWORKS = ['Expectancy Theory', 'Job Char. Model', 'Crowding Out', 'Folly: A→B', 'Tight / Loose', 'Network Shape', 'Incentive Compat.'];
 
 // -----------------------------------------------------------------------------
 // FIT SYSTEM — how each framework lands against each boss/phase.
@@ -164,15 +164,15 @@ const BOSSES = {
     tileCode: 6, hp: 150, sprite: 'quesarito',
     issue: 'Three brand leads. Three strategies. One live campaign. The media partner has been emailing Jordan for six weeks. Jordan works at Chipotle now.',
     reward: 'Mild Sauce Packet',
-    unlocks: 'Networks',
+    unlocks: 'Network Shape',
     fit: {
-      'Coordination': FIT.STRONG,
-      'Negotiation':  FIT.STRONG,
-      'Feedback':     FIT.FIT,
-      'Networks':     FIT.FIT,
-      'Culture':      FIT.NEUTRAL,
-      'Motivation':   FIT.MISFIT,
-      'Change Mgmt':  FIT.MISFIT,
+      'Expectancy Theory': FIT.STRONG,
+      'Incentive Compat.': FIT.STRONG,
+      'Folly: A→B':        FIT.FIT,
+      'Job Char. Model':   FIT.NEUTRAL,
+      'Tight / Loose':     FIT.NEUTRAL,
+      'Network Shape':     FIT.NEUTRAL,
+      'Crowding Out':      FIT.MISFIT,
     },
     intro: "I contain both a burrito AND a quesadilla. Two identities. Zero accountability. The last brand lead called me a Q3 priority. The one before said I was exploratory. I have been in market for six weeks and I do not know what I am.",
     retorts: {
@@ -190,19 +190,19 @@ const BOSSES = {
     tileCode: 7, hp: 150, sprite: 'baja_blast',
     issue: 'The agency lead has sent the same activation deck to four different people in two weeks. All four think they are the brand lead. One transferred to the Cantina line in September.',
     reward: 'Hot Sauce Packet',
-    unlocks: ['Motivation', 'Feedback'],
+    unlocks: ['Job Char. Model', 'Crowding Out'],
     fit: {
-      'Networks':     FIT.STRONG,
-      'Coordination': FIT.STRONG,
-      'Negotiation':  FIT.FIT,
-      'Feedback':     FIT.FIT,
-      'Culture':      FIT.NEUTRAL,
-      'Motivation':   FIT.NEUTRAL,
-      'Change Mgmt':  FIT.MISFIT,
+      'Network Shape':     FIT.STRONG,
+      'Expectancy Theory': FIT.STRONG,
+      'Incentive Compat.': FIT.FIT,
+      'Folly: A→B':        FIT.FIT,
+      'Tight / Loose':     FIT.NEUTRAL,
+      'Job Char. Model':   FIT.NEUTRAL,
+      'Crowding Out':      FIT.MISFIT,
     },
     intro: "Mountain Dew made me. Taco Bell claimed me. Neither of them can tell you who the current brand lead is. I have been at this chain since 2004. I have outlasted every brand lead assigned to me. The current one has been here eleven days. Good luck kid.",
     retorts: {
-      STRONG:  "Wait. You actually know the agency contact? By name? And you have their Slack? This is the most hydrated I have felt since the Mountain Dew collab.",
+      STRONG:  "You know the contact. You clarified who owns this. You drew the line between what performance requires and what it actually produces. I have been waiting six weeks for someone to do exactly those things. This is the most hydrated I have felt since the Mountain Dew collab.",
       FIT:     "Okay so I just email that person directly? Not the distribution list? Not reply-all to the chain that has the agency, the agency's agency, and someone's intern from summer?",
       NEUTRAL: "Right. I will CC everyone. The VP. The agency. Whoever approved the Naked Chicken Chalupa. Someone in there will know something.",
       MISFIT:  "I am scheduling a 30-person sync. Tomorrow. 8 AM. Legal is on it. Someone added Franchise Ops. I do not know why Franchise Ops is on it.",
@@ -216,15 +216,15 @@ const BOSSES = {
     tileCode: 8, hp: 150, sprite: 'og_crunchy_taco',
     issue: 'The cross-functional partners on this item have worked with six brand leads in four years. They are not difficult. They are just done getting their hopes up.',
     reward: 'Fire Sauce Packet',
-    unlocks: ['Change Mgmt', 'Culture'],
+    unlocks: ['Tight / Loose', 'Folly: A→B'],
     fit: {
-      'Motivation':   FIT.STRONG,
-      'Feedback':     FIT.STRONG,
-      'Culture':      FIT.FIT,
-      'Networks':     FIT.FIT,
-      'Coordination': FIT.NEUTRAL,
-      'Negotiation':  FIT.NEUTRAL,
-      'Change Mgmt':  FIT.MISFIT,
+      'Job Char. Model':   FIT.STRONG,
+      'Crowding Out':      FIT.STRONG,
+      'Expectancy Theory': FIT.FIT,
+      'Network Shape':     FIT.FIT,
+      'Folly: A→B':        FIT.NEUTRAL,
+      'Tight / Loose':     FIT.NEUTRAL,
+      'Incentive Compat.': FIT.MISFIT,
     },
     intro: "I am older than the value menu. I am older than the Crunch Wrap. I am older than the concept of a fourth meal. The partners who support me are professionals. They are also exhausted. The last three brand leads introduced themselves with the same deck. Slide four is always about their vision for the brand. Nobody has stayed long enough to execute slide four.",
     retorts: {
@@ -242,16 +242,16 @@ const BOSSES = {
     tileCode: 5, hp: 150, sprite: 'mexican_pizza',
     issue: 'High visibility relaunch. Hard deadline. The person who ran the last one was rotated eight months ago and is now very unreachable.',
     reward: 'Diablo Sauce Packet',
-    unlocks: ['Negotiation'],
+    unlocks: ['Incentive Compat.'],
     grants: 'diablo_sauce_packet',
     fit: {
-      'Change Mgmt':  FIT.STRONG,
-      'Culture':      FIT.STRONG,
-      'Negotiation':  FIT.FIT,
-      'Networks':     FIT.FIT,
-      'Coordination': FIT.NEUTRAL,
-      'Feedback':     FIT.NEUTRAL,
-      'Motivation':   FIT.MISFIT,
+      'Folly: A→B':        FIT.STRONG,
+      'Tight / Loose':     FIT.STRONG,
+      'Network Shape':     FIT.FIT,
+      'Job Char. Model':   FIT.FIT,
+      'Incentive Compat.': FIT.FIT,
+      'Expectancy Theory': FIT.NEUTRAL,
+      'Crowding Out':      FIT.MISFIT,
     },
     intro: "I trended on Twitter. I had a waitlist. People cried when I came back. Real tears. And now the person managing my comeback has never run a relaunch before because the person who did is at Chipotle now. Different Chipotle than Jordan. They carpool.",
     retorts: {
@@ -279,7 +279,7 @@ const BOSSES = {
         name: 'TOSTADA LAYER',
         flavor: "Agility builds leaders. It says so on the poster next to the Baja Blast dispenser. Nobody has measured what it costs but the poster was professionally laminated.",
         threshold: 1.00,
-        fit: { 'Coordination': FIT.STRONG, 'Negotiation': FIT.STRONG },
+        fit: { 'Expectancy Theory': FIT.STRONG, 'Folly: A→B': FIT.STRONG },
         retorts: {
           STRONG:  "You are naming the gap between the claim and the data. I do not like it. I will re-form. I always re-form.",
           NEUTRAL: "Agility is a value. You cannot put a value in a spreadsheet. That is not how values work.",
@@ -291,7 +291,7 @@ const BOSSES = {
         name: 'BEEF & CHEESE',
         flavor: "Redundancy creates resilience. We rotated four people through this role last year. Technically one of them is still here. They manage the Freeze account now. They do not know why.",
         threshold: 0.8,
-        fit: { 'Change Mgmt': FIT.STRONG, 'Feedback': FIT.STRONG },
+        fit: { 'Job Char. Model': FIT.STRONG, 'Crowding Out': FIT.STRONG },
         retorts: {
           STRONG:  "You are getting to the people layer. I can feel the attrition risk rising. That number lives in a spreadsheet next to the Freeze launch recap that nobody opened either.",
           NEUTRAL: "Redundancy is a systems concept. You are talking about a person who cried in the Cantina last Tuesday. Those are not the same conversation.",
@@ -303,7 +303,7 @@ const BOSSES = {
         name: 'LETTUCE & CREMA',
         flavor: "Rotation is good for your career. Live Mas. That is the whole argument. Those are the two sentences. The person who presented them got a standing ovation at the all-hands and then was rotated to the Naked Chicken Chalupa team four months later.",
         threshold: 0.6,
-        fit: { 'Culture': FIT.STRONG, 'Networks': FIT.STRONG },
+        fit: { 'Tight / Loose': FIT.STRONG, 'Network Shape': FIT.STRONG },
         retorts: {
           STRONG:  "You are naming what we reward versus what we say we value. Live Mas is on the wall. The promotion went to the person who stayed in their seat for three years and did not say anything.",
           NEUTRAL: "Career development is a journey. We have a whole module on it in the learning portal. Nobody has completed the module. It was assigned in 2021.",
@@ -315,7 +315,7 @@ const BOSSES = {
         name: 'DICED TOMATOES',
         flavor: "Discomfort is the point. The Naked Chicken Chalupa made people uncomfortable. The Doritos Locos Taco made people uncomfortable. Those worked out. Rotating the entire brand team twice a year is the same thing. Probably.",
         threshold: 0.4,
-        fit: { 'Coordination': FIT.STRONG, 'Motivation': FIT.STRONG },
+        fit: { 'Incentive Compat.': FIT.STRONG, 'Expectancy Theory': FIT.STRONG },
         retorts: {
           STRONG:  "The Doritos Locos Taco was uncomfortable. It was also a billion dollars in seventy days. Nobody rotated that person to the Cinnamon Twists account mid-launch. The Cinnamon Twists account is where ideas go to wait.",
           NEUTRAL: "Karen has the Q2 data, the agency brief, and the activation login. Karen has been rotated twice. Nobody has asked Karen anything. Karen is now on the Spork Awareness initiative. It is not a real initiative.",
@@ -327,7 +327,7 @@ const BOSSES = {
         name: 'TORTILLA SHELL',
         flavor: "If you are struggling that is a you problem. The Crunchwrap has held its shape since 2005. The hexagonal seal is intentional. Nothing spills out. Nothing gets in. If you cannot thrive inside this structure maybe you are not a Crunchwrap person.",
         threshold: 0.2,
-        fit: { 'Change Mgmt': FIT.STRONG, 'Culture': FIT.STRONG },
+        fit: { 'Job Char. Model': FIT.STRONG, 'Folly: A→B': FIT.STRONG },
         retorts: {
           STRONG:  "You are getting through the seal. I do not know how. The hexagon is supposed to be airtight. Geometrically this should not be happening.",
           NEUTRAL: "The structure is fine. The structure has been fine since 2005. If you are struggling that is a you problem and also possibly a tortilla problem but mostly a you problem.",
@@ -467,7 +467,7 @@ const state = {
   inventory: new Set(),
   defeatedBosses: new Set(),
   clearedTiles: new Set(),   // "x,y" of encounter tiles that have been cleared
-  unlockedFrameworks: ['Coordination'],
+  unlockedFrameworks: ['Expectancy Theory'],
   mentorCallUses: 2,
   tutorialSeen: { firstBattle: false, firstStrong: false, firstMisfit: false },
   // Battle sub-state lives in state.battle while mode==='battle'
@@ -1881,11 +1881,13 @@ function renderEnding() {
     'Gidget the Chihuahua took on five layers of org dysfunction',
     'and prevailed with frameworks, not vibes:',
     '',
-    '· Coordination — RACI matrices over heroic guessing.',
-    '· Networks — brokerage over visibility theatre.',
-    '· Motivation — ownership over shoutouts.',
-    '· Change Mgmt — pilots over mandates.',
-    '· Culture — surfacing what review processes really reward.',
+    '· Expectancy Theory — the chain is multiplicative. Fix E→P first.',
+    '· Job Char. Model — task identity and feedback are not optional.',
+    '· Crowding Out — if they already care, pay makes them care less.',
+    '· Folly: A→B — you reward rotation and hope for continuity. Pick one.',
+    '· Tight / Loose — tightness on the wrong things is just control.',
+    '· Network Shape — density plus range. Networks die with rotation.',
+    '· Incentive Compat. — tie the proposer to the outcome, not just the idea.',
     '',
     "Constant rotation is not agility. It's amnesia.",
     'Continuity is a feature. Build it on purpose.',
@@ -1939,12 +1941,12 @@ function startNewGame() {
   state.inventory = new Set();
   state.defeatedBosses = new Set();
   state.clearedTiles = new Set();
-  state.unlockedFrameworks = ['Coordination'];
+  state.unlockedFrameworks = ['Expectancy Theory'];
   state.mentorCallUses = MENTOR_CALL.startUses;
   state.tutorialSeen = { firstBattle: false, firstStrong: false, firstMisfit: false };
   state.battle = null;
   state.toast = {
-    text: "Welcome, brand lead. The BRAND TEAM bullpen is open. The Quesarito is your first fight. You only know Coordination, but it's exactly what you need.",
+    text: "Welcome, brand lead. The BRAND TEAM bullpen is open. The Quesarito is your first fight. You only know Expectancy Theory — trace the broken E-to-P chain and the accountability gap.",
     t: 0, dur: 6000
   };
   buildWalkable();
