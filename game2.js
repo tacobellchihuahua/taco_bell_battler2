@@ -1594,7 +1594,7 @@ function drawPlatform(cx, cy, w, h) {
 
 function drawBattleBottom() {
   const b = state.battle;
-  const bx = 20, by = 504, bw = CANVAS_W - 40, bh = 180;
+  const bx = 20, by = 488, bw = CANVAS_W - 40, bh = 216;
   drawDialogBox(bx, by, bw, bh);
 
   if (b.menu === 'message') {
