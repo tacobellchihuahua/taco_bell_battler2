@@ -733,6 +733,7 @@ function actuallyStartBattle(bossKey) {
     mentorAnim: null,
     phaseAnim: null,   // { t, dur, name, color } — phase-transition banner
     screenFlash: 0,    // 0-1, decays each frame
+    idleT: 0,          // ms accumulator for idle bob animation
   };
   state.mode = 'battle';
   playMusic('battle');
@@ -958,7 +959,7 @@ function executePlayerMove(frameworkName, move) {
       // Visual: heavy shake + screen flash + banner
       b.shake = 3.5;
       b.screenFlash = 1.0;
-      b.phaseAnim = { t: 0, dur: 1800, name: ph.name };
+      b.phaseAnim = { t: 0, dur: 1800, defeated: oldPhase.name, next: ph.name };
     }
   }
 
@@ -1442,6 +1443,10 @@ function renderBattle() {
     shakeY = (Math.random() - 0.5) * 12 * b.shake;
   }
 
+  // Idle bob offsets — boss and Gidget on different periods/phases
+  const bossBob  = Math.sin(b.idleT / 700) * 5;
+  const gidBob   = Math.sin(b.idleT / 550 + 1.4) * 4;
+
   // Boss platform (top-right)
   const bossX = CANVAS_W - 240 + shakeX, bossY = 90 + shakeY;
   drawPlatform(bossX + 30, bossY + 220, 200, 24);
@@ -1451,7 +1456,7 @@ function renderBattle() {
   if (b.bossFlash > 0) {
     ctx.globalAlpha = 0.4 + Math.random() * 0.4;
   }
-  if (bossImg) drawImageScaled(bossImg, bossX + 50, bossY + 70 - (b.bossFlash > 0 ? 6 : 0), 160, 160);
+  if (bossImg) drawImageScaled(bossImg, bossX + 50, bossY + 70 + bossBob - (b.bossFlash > 0 ? 6 : 0), 160, 160);
   ctx.restore();
 
   // Boss HP plate (top-left)
@@ -1483,7 +1488,7 @@ function renderBattle() {
     ctx.fill();
     ctx.restore();
   }
-  if (gidImg) drawImageScaled(gidImg, gidX + 50, gidY + 50, 160, 160);
+  if (gidImg) drawImageScaled(gidImg, gidX + 50, gidY + 50 + gidBob, 160, 160);
   ctx.restore();
 
   // Mentor-call thought bubble (drawn ABOVE sprite so it's never occluded)
@@ -1575,16 +1580,16 @@ function renderBattle() {
     ctx.lineWidth = 3;
     ctx.beginPath(); ctx.moveTo(0, bannerY);     ctx.lineTo(CANVAS_W, bannerY);     ctx.stroke();
     ctx.beginPath(); ctx.moveTo(0, bannerY + 88); ctx.lineTo(CANVAS_W, bannerY + 88); ctx.stroke();
-    // "LAYER DEFEATED" label
-    ctx.font = '13px "Montserrat", sans-serif';
+    // Defeated layer name
+    ctx.font = 'bold 28px "Fugaz One", sans-serif';
     ctx.fillStyle = PAL.red;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText('— LAYER DEFEATED —', CANVAS_W / 2, bannerY + 22);
-    // Phase name
-    ctx.font = 'bold 28px "Fugaz One", sans-serif';
+    ctx.fillText(b.phaseAnim.defeated + ' — CRACKED', CANVAS_W / 2, bannerY + 28);
+    // Next layer label
+    ctx.font = '13px "Montserrat", sans-serif';
     ctx.fillStyle = PAL.gold;
-    ctx.fillText(b.phaseAnim.name, CANVAS_W / 2, bannerY + 60);
+    ctx.fillText('NEXT LAYER: ' + b.phaseAnim.next, CANVAS_W / 2, bannerY + 62);
     ctx.restore();
   }
 
@@ -1972,6 +1977,7 @@ function loop(now) {
     if (b && b.screenFlash > 0) {
       b.screenFlash = Math.max(0, b.screenFlash - 0.04);
     }
+    if (b) b.idleT += dt;
   }
   if (state.mode === 'ending')    state.ending.t += dt;
 
