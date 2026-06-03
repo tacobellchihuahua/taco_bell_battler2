@@ -955,7 +955,6 @@ function executePlayerMove(frameworkName, move) {
         msgs.push({ text: oldPhase.transition, style: 'boss' });
       }
       msgs.push({ text: `* ${ph.name} *`, style: 'gold' });
-      msgs.push({ text: ph.flavor, style: 'narration' });
       // Visual: heavy shake + screen flash + banner
       b.shake = 3.5;
       b.screenFlash = 1.0;
