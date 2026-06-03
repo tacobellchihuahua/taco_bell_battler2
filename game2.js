@@ -121,11 +121,11 @@ const ALL_FRAMEWORKS = ['Expectancy Theory', 'Job Char. Model', 'Crowding Out', 
 const FIT = { STRONG: 'STRONG', FIT: 'FIT', NEUTRAL: 'NEUTRAL', MISFIT: 'MISFIT' };
 
 // Outgoing damage multipliers (player → boss)
-const FIT_DMG_OUT = { STRONG: 1.5, FIT: 1.0, NEUTRAL: 0.6, MISFIT: 0.3 };
+const FIT_DMG_OUT = { STRONG: 1.5, FIT: 0.6, NEUTRAL: 0.4, MISFIT: 0.3 };
 // Incoming retort multipliers (boss → player)
 const FIT_DMG_IN  = { STRONG: 0.5, FIT: 0.8, NEUTRAL: 1.0, MISFIT: 1.4 };
 // Boss self-heal multipliers
-const FIT_HEAL    = { STRONG: 0.0, FIT: 0.4, NEUTRAL: 0.8, MISFIT: 1.0 };
+const FIT_HEAL    = { STRONG: 0.0, FIT: 0.5, NEUTRAL: 1.0, MISFIT: 1.5 };
 
 // Universal narrative fit-line bank — printed every turn after player attack.
 const FIT_LINES = {
@@ -183,7 +183,7 @@ const BOSSES = {
     },
     killingBlow: "...okay. One launch. One lead. I have been performing ownership for three weeks without knowing what I actually own. You drew the line. Not me.",
     defeat: "Fine. You take accountability on Q3. Document it this time. Somewhere findable. For whoever comes after you.",
-    baseDmg: 13, baseHeal: 0,
+    baseDmg: 14, baseHeal: 0,
   },
   baja_blast: {
     name: 'BAJA BLAST',
@@ -209,7 +209,7 @@ const BOSSES = {
     },
     killingBlow: "You had the number. It was in your phone. We have been escalating this for three weeks and it was just. In your phone. Next to your Taco Bell app.",
     defeat: "That worked. I am adding you to every distribution list I have. All fourteen of them. You cannot stop me. Nobody can stop me. Nobody has tried.",
-    baseDmg: 12, baseHeal: 0,
+    baseDmg: 16, baseHeal: 0,
   },
   mexican_pizza: {
     name: 'THE OG CRUNCHY TACO',
@@ -235,7 +235,7 @@ const BOSSES = {
     },
     killingBlow: "You actually... heard that. Okay. I have some ideas I have not said out loud in a while. Want to hear them?",
     defeat: "I do not trust this will not get rotated away. But for now, yeah. Let us try.",
-    baseDmg: 11, baseHeal: 3,
+    baseDmg: 18, baseHeal: 6,
   },
   og_crunchy_taco: {
     name: 'THE MEXICAN PIZZA',
@@ -262,7 +262,7 @@ const BOSSES = {
     },
     killingBlow: "You actually did the work. You read the old briefs. You called the agency contact from two relaunches ago. I did not think anyone was going to do that.",
     defeat: "Do not let them rotate you before this ships. I am serious. I will trend again and I need someone who knows what they are doing standing next to me when it happens.",
-    baseDmg: 13, baseHeal: 2,
+    baseDmg: 20, baseHeal: 8,
   },
   crunchwrap_supreme: {
     name: 'THE CRUNCHWRAP SUPREME',
@@ -285,7 +285,7 @@ const BOSSES = {
           NEUTRAL: "Agility is a value. You cannot put a value in a spreadsheet. That is not how values work.",
         },
         transition: 'The tostada cracks. The rationalization held for years. It will not hold today. Next layer.',
-        baseDmg: 14, baseHeal: 2,
+        baseDmg: 18, baseHeal: 10,
       },
       {
         name: 'BEEF & CHEESE',
@@ -297,7 +297,7 @@ const BOSSES = {
           NEUTRAL: "Redundancy is a systems concept. You are talking about a person who cried in the Cantina last Tuesday. Those are not the same conversation.",
         },
         transition: "The beef gives out. Four rotations and zero transition docs will do that. Next layer.",
-        baseDmg: 14, baseHeal: 2,
+        baseDmg: 20, baseHeal: 10,
       },
       {
         name: 'LETTUCE & CREMA',
@@ -309,7 +309,7 @@ const BOSSES = {
           NEUTRAL: "Career development is a journey. We have a whole module on it in the learning portal. Nobody has completed the module. It was assigned in 2021.",
         },
         transition: "The lettuce wilts. Live Mas cannot load-bear this much irony. Next layer.",
-        baseDmg: 14, baseHeal: 2,
+        baseDmg: 22, baseHeal: 10,
       },
       {
         name: 'DICED TOMATOES',
@@ -321,7 +321,7 @@ const BOSSES = {
           NEUTRAL: "Karen has the Q2 data, the agency brief, and the activation login. Karen has been rotated twice. Nobody has asked Karen anything. Karen is now on the Spork Awareness initiative. It is not a real initiative.",
         },
         transition: "The tomatoes scatter. Karen had everything. Nobody asked Karen. One layer left.",
-        baseDmg: 14, baseHeal: 2,
+        baseDmg: 24, baseHeal: 10,
       },
       {
         name: 'TORTILLA SHELL',
@@ -333,7 +333,7 @@ const BOSSES = {
           NEUTRAL: "The structure is fine. The structure has been fine since 2005. If you are struggling that is a you problem and also possibly a tortilla problem but mostly a you problem.",
         },
         transition: null, // final phase
-        baseDmg: 15, baseHeal: 2,
+        baseDmg: 26, baseHeal: 10,
       },
     ],
   },
@@ -376,8 +376,8 @@ function getBossBaseHeal(boss, phaseIndex) {
 const MENTOR_CALL = {
   name: '5-MIN MENTOR CALL',
   heal: 75,
-  startUses: 2,
-  maxUses: 2,
+  startUses: 3,
+  maxUses: 3,
 };
 
 // Lookup boss by tile code
