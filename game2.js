@@ -731,6 +731,8 @@ function actuallyStartBattle(bossKey) {
     bossFlash: 0,
     gidgetFlash: 0,
     mentorAnim: null,
+    phaseAnim: null,   // { t, dur, name, color } — phase-transition banner
+    screenFlash: 0,    // 0-1, decays each frame
   };
   state.mode = 'battle';
   playMusic('battle');
@@ -953,6 +955,10 @@ function executePlayerMove(frameworkName, move) {
       }
       msgs.push({ text: `* ${ph.name} *`, style: 'gold' });
       msgs.push({ text: ph.flavor, style: 'narration' });
+      // Visual: heavy shake + screen flash + banner
+      b.shake = 3.5;
+      b.screenFlash = 1.0;
+      b.phaseAnim = { t: 0, dur: 1800, name: ph.name };
     }
   }
 
@@ -1542,6 +1548,46 @@ function renderBattle() {
   // Persistent Issue Card (top-center, below boss name)
   drawIssueCard(b);
 
+  // Screen flash on phase transition
+  if (b.screenFlash > 0) {
+    ctx.save();
+    ctx.globalAlpha = b.screenFlash * 0.55;
+    ctx.fillStyle = PAL.red;
+    ctx.fillRect(0, 0, CANVAS_W, CANVAS_H);
+    ctx.restore();
+  }
+
+  // Phase transition banner overlay
+  if (b.phaseAnim) {
+    const t = b.phaseAnim.t / b.phaseAnim.dur;
+    // Envelope: slam in (0–0.12), hold (0.12–0.75), slide out (0.75–1.0)
+    let alpha = 1, offsetY = 0;
+    if (t < 0.12)      { alpha = t / 0.12;              offsetY = -40 * (1 - t / 0.12); }
+    else if (t > 0.75) { alpha = 1 - (t - 0.75) / 0.25; offsetY =  30 * ((t - 0.75) / 0.25); }
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    const bannerY = CANVAS_H / 2 - 44 + offsetY;
+    // Dark bar
+    ctx.fillStyle = 'rgba(10,0,20,0.88)';
+    ctx.fillRect(0, bannerY, CANVAS_W, 88);
+    // Top + bottom accent lines
+    ctx.strokeStyle = PAL.red;
+    ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(0, bannerY);     ctx.lineTo(CANVAS_W, bannerY);     ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0, bannerY + 88); ctx.lineTo(CANVAS_W, bannerY + 88); ctx.stroke();
+    // "LAYER DEFEATED" label
+    ctx.font = '13px "Montserrat", sans-serif';
+    ctx.fillStyle = PAL.red;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('— LAYER DEFEATED —', CANVAS_W / 2, bannerY + 22);
+    // Phase name
+    ctx.font = 'bold 28px "Fugaz One", sans-serif';
+    ctx.fillStyle = PAL.gold;
+    ctx.fillText(b.phaseAnim.name, CANVAS_W / 2, bannerY + 60);
+    ctx.restore();
+  }
+
   // Bottom UI (dialog/menu)
   drawBattleBottom();
 }
@@ -1918,6 +1964,13 @@ function loop(now) {
     if (b && b.mentorAnim) {
       b.mentorAnim.t += dt;
       if (b.mentorAnim.t >= b.mentorAnim.dur) b.mentorAnim = null;
+    }
+    if (b && b.phaseAnim) {
+      b.phaseAnim.t += dt;
+      if (b.phaseAnim.t >= b.phaseAnim.dur) b.phaseAnim = null;
+    }
+    if (b && b.screenFlash > 0) {
+      b.screenFlash = Math.max(0, b.screenFlash - 0.04);
     }
   }
   if (state.mode === 'ending')    state.ending.t += dt;
