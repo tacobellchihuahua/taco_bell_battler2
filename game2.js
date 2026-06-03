@@ -69,45 +69,45 @@ function playMusic(track) {
 // -----------------------------------------------------------------------------
 const FRAMEWORKS = {
   'Expectancy Theory': [
-    { dmg: 40, text: "If you can't see how effort turns into results, working harder is just working louder. The brief has changed three times and nobody here knows what good looks like." },
+    { dmg: 40, text: "Nobody here knows which inputs lead to which outcomes — not because they're lazy, but because the brief changes every rotation and nobody's stayed long enough to find out. Fix the chain. Motivation follows clarity. It doesn't come first." },
     { dmg: 30, text: "Good work gets rewarded with a new assignment to something you've never touched. That's not a reward. That's a lateral punishment with a nice subject line." },
-    { dmg: 20, text: "The org is offering enterprise breadth. The brand lead wants to finish what they started. Nobody asked what the person actually wanted." },
+    { dmg: 20, text: "The org is offering breadth. The brand lead wants to finish what they started. Nobody asked what the person actually wanted from this job." },
     { dmg: 5,  text: "Send a welcome gift basket. It has a Live Mas mug. Motivation: probably fixed.", trap: true },
   ],
   'Job Char. Model': [
-    { dmg: 40, text: "Work feels meaningful when you own it start to finish, get real feedback, and have actual control. Rotation breaks all three. You kept the part where people stay busy." },
-    { dmg: 30, text: "Without a consistent coach, being told you're in charge feels like being handed the keys and wished good luck. The brand lead is not in charge. They are alone." },
-    { dmg: 20, text: "Yes, rotating gives people new skills. No, new skills don't fix not knowing if your work mattered. One good thing doesn't cancel three broken ones." },
+    { dmg: 40, text: "You need task identity, real feedback, and autonomy for work to feel meaningful. Rotation broke all three. They don't own a whole task, the coach rotates out, and they have no real authority on day one. That's not a motivation problem. That's a design problem." },
+    { dmg: 30, text: "Without a stable coach, 'you're in charge' just means 'you're alone.' The brand lead knows they're being set up to fail. They're just too new to say it out loud." },
+    { dmg: 20, text: "Yes, breadth builds skills. No, new skills don't fix not knowing whether your work mattered. One good thing doesn't cancel three broken ones." },
     { dmg: 5,  text: "Add another stretch assignment. Six product lines in three years. The scorecard looks great. The person is fine.", trap: true },
   ],
   'Crowding Out': [
-    { dmg: 40, text: "A daycare fined parents for late pickup. Late pickups went up. Paying people to do something they used to do out of basic decency tells them the decent thing is now optional. You just offered a retention bonus." },
-    { dmg: 30, text: "Every check-in template says: we don't think you'll do this without us watching. The brand lead heard you. They're managing the spreadsheet now instead of the campaign." },
-    { dmg: 20, text: "Managers think people want money and security. Employees want work they can actually finish and feel proud of. These surveys have existed for decades. Nobody reads them upstairs." },
+    { dmg: 40, text: "A daycare fined parents for late pickup. Late pickups went up. The fine made it a transaction — and the guilt disappeared. Every bonus and check-in template you've added here did the same thing. You paid people to care. That told them caring was optional." },
+    { dmg: 30, text: "Every check-in deck says: we don't trust you to do this without oversight. The brand lead heard you. They're managing the spreadsheet now instead of the campaign." },
+    { dmg: 20, text: "Employees want work they can actually finish and feel proud of. Bonuses and monitoring aren't substitutes for that. These surveys have existed for decades. Nobody reads them upstairs." },
     { dmg: 5,  text: "Completion bonus. Taco Bell gift card. Intent: genuine. Irony: present.", trap: true },
   ],
   'Folly: A→B': [
-    { dmg: 40, text: "Wells Fargo wanted customer loyalty. They rewarded accounts opened. They got fraud. You want institutional knowledge. You reward rotation speed. You will get very agile people who know nothing." },
-    { dmg: 30, text: "The review says: adaptable, enterprise mindset, embraces change. Nothing says: stayed long enough to ship the thing. You measure what's easy and wonder why you're not getting what's hard." },
-    { dmg: 20, text: "What does your system actually reward? Rotation compliance. Agreeable handoffs. Not rocking the boat when it's time to move. That is the behavior you have been selecting for." },
-    { dmg: 5,  text: "Add campaign completion as a checkbox. Item nine of twelve. Same weight as stakeholder communication. We'll see which one gets filled in.", trap: true },
+    { dmg: 40, text: "Wells Fargo rewarded accounts opened. They wanted loyalty. They got fraud. You reward rotation speed and adaptability. You want institutional knowledge. You're going to get very agile people who know nothing about anything they're working on." },
+    { dmg: 30, text: "The review says: adaptable, enterprise mindset, embraces change. Nothing says: stayed long enough to ship the thing. You measure what's easy to measure and act surprised when you don't get what's hard to measure." },
+    { dmg: 20, text: "Your system rewards rotation compliance and clean handoffs. Not brand ownership. Not seeing things through. That is the behavior you have been selecting for, one review cycle at a time." },
+    { dmg: 5,  text: "Add campaign completion as a checkbox. Item nine of twelve. Same weight as stakeholder communication. Should be fine.", trap: true },
   ],
   'Tight / Loose': [
-    { dmg: 40, text: "Nobody freestyles the salmonella policy. Campaign ownership though? Whoever's around can probably handle it. One of these is a high-reliability situation. It's actually both." },
-    { dmg: 30, text: "The Doritos Locos Taco made a billion dollars. They did not rotate the inventor to the Cinnamon Twists account mid-launch. Staying put was the call." },
-    { dmg: 20, text: "This org already knows how to enforce rules. Franchise agreements. Supply chain. Nobody improvises the hexagonal seal. The question is whether brand ownership deserves the same seriousness." },
+    { dmg: 40, text: "Nobody freestyles the salmonella policy. Campaign ownership though? Whoever's around can probably handle it. You have tight rules where they're easy to enforce and loose rules where they actually matter. A national relaunch is not a loose situation." },
+    { dmg: 30, text: "The Doritos Locos Taco made a billion dollars in 70 days. They did not rotate the inventor to the Cinnamon Twists account mid-launch. The call was to stay put. That call has a name." },
+    { dmg: 20, text: "This org knows how to run tight rules — franchise agreements, supply chain, the hexagonal seal. The question is whether brand ownership deserves the same seriousness. It does." },
     { dmg: 5,  text: "New onboarding module. Mandatory. Nobody finished the 2021 one but this one has a better font.", trap: true },
   ],
   'Network Shape': [
-    { dmg: 40, text: "Teams that actually ship have two things: they know and trust each other, and they have contacts outside their own bubble. You have four people who each think they're the POC and have never met." },
-    { dmg: 30, text: "Partners stopped trying to connect with brand leads because the last six rotated within the year. That's not cynicism. That's pattern recognition." },
-    { dmg: 20, text: "The last lead had the agency contact saved as Baja Blast Guy. No real name. Just Baja Blast Guy. That one contact was worth more than the entire shared drive." },
+    { dmg: 40, text: "Teams that ship have two things: people who know and trust each other, and contacts outside their own team. Right now you have four people who each think they're the main POC and none of them have been introduced. The agency has been emailing ghosts." },
+    { dmg: 30, text: "Partners stopped trying to build relationships with brand leads because the last six rotated within the year. That's not cynicism. That's pattern recognition. They're not being difficult. They're being accurate." },
+    { dmg: 20, text: "The last lead had the agency contact saved as Baja Blast Guy. No real name. Just Baja Blast Guy. That one relationship was worth more than everything in the shared drive." },
     { dmg: 5,  text: "LinkedIn group. Forty-three members. Zero posts. Cover image: Baja Blast. Network: handled.", trap: true },
   ],
   'Incentive Compat.': [
-    { dmg: 40, text: "The person who wrote this strategy is at a different Chipotle now. The person executing it has been here eleven days. Neither of them wins or loses together. That is the whole problem." },
-    { dmg: 30, text: "Directors pitch the strategy. Brand leads do the work. Directors get credit for the pitch. You rewarded the PowerPoint." },
-    { dmg: 20, text: "Three brand leads touched this brief. Each changed something. None stayed to find out if their version worked. It's a game of telephone where everyone moves before the message arrives." },
+    { dmg: 40, text: "The person who wrote this strategy is gone. The person executing it has been here eleven days. Neither one wins or loses based on whether this actually ships well. That is not a people problem. That is a structural problem. And you built the structure." },
+    { dmg: 30, text: "Directors pitch the strategy. Brand leads do the work. Directors get credit for the pitch. You built a system that rewards the PowerPoint and wonders why the execution keeps falling apart." },
+    { dmg: 20, text: "Three brand leads touched this brief. Each changed something. None stayed to find out if it worked. It's a game of telephone where everyone moves before the message arrives." },
     { dmg: 5,  text: "Thirty-minute handoff. They share the link. Incoming lead nods. We call it a knowledge transfer. It is a nod and a link.", trap: true },
   ],
 };
@@ -162,7 +162,7 @@ const BOSSES = {
   quesarito: {
     name: 'THE QUESARITO',
     tileCode: 6, hp: 150, sprite: 'quesarito',
-    issue: 'Three brand leads. Three strategies. One live campaign. The media partner has been emailing Jordan for six weeks. Jordan works at Chipotle now.',
+    issue: 'Three brand leads. Three strategies. One live campaign. Nobody knows which inputs drive the outcome because nobody\'s stayed long enough to find out. The media partner has been emailing Jordan for six weeks. Jordan works at Chipotle now.',
     reward: 'Mild Sauce Packet',
     unlocks: 'Network Shape',
     fit: {
@@ -188,7 +188,7 @@ const BOSSES = {
   baja_blast: {
     name: 'BAJA BLAST',
     tileCode: 7, hp: 150, sprite: 'baja_blast',
-    issue: 'The agency lead has sent the same activation deck to four different people in two weeks. All four think they are the brand lead. One transferred to the Cantina line in September.',
+    issue: 'The agency has sent the same activation deck to four different people in two weeks. All four think they are the brand lead. They have never met each other. Nobody told the agency.',
     reward: 'Hot Sauce Packet',
     unlocks: ['Job Char. Model', 'Crowding Out'],
     fit: {
@@ -214,7 +214,7 @@ const BOSSES = {
   mexican_pizza: {
     name: 'THE OG CRUNCHY TACO',
     tileCode: 8, hp: 150, sprite: 'og_crunchy_taco',
-    issue: 'The cross-functional partners on this item have worked with six brand leads in four years. They are not difficult. They are just done getting their hopes up.',
+    issue: 'The cross-functional partners have worked with six brand leads in four years. Every bonus and check-in the org added to re-engage them made it worse. They are not difficult. They are just done.',
     reward: 'Fire Sauce Packet',
     unlocks: ['Tight / Loose', 'Folly: A→B'],
     fit: {
@@ -240,7 +240,7 @@ const BOSSES = {
   og_crunchy_taco: {
     name: 'THE MEXICAN PIZZA',
     tileCode: 5, hp: 150, sprite: 'mexican_pizza',
-    issue: 'High visibility relaunch. Hard deadline. The person who ran the last one was rotated eight months ago and is now very unreachable.',
+    issue: 'High visibility relaunch. Hard deadline. The org rewarded the last lead for being adaptable and rotated them eight months before launch. Nobody left a note. The new lead Google searched the launch date. It was in the press release.',
     reward: 'Diablo Sauce Packet',
     unlocks: ['Incentive Compat.'],
     grants: 'diablo_sauce_packet',
