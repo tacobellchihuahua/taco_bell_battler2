@@ -69,46 +69,46 @@ function playMusic(track) {
 // -----------------------------------------------------------------------------
 const FRAMEWORKS = {
   'Expectancy Theory': [
-    { dmg: 40, text: "Show me the chain right now. What does success look like, who decides, and what happens when someone actually delivers it? I am not putting in more effort on a brief that's changed three times until we answer those three questions. In this room. Today." },
+    { dmg: 50, text: "Show me the chain right now. What does success look like, who decides, and what happens when someone actually delivers it? I am not putting in more effort on a brief that's changed three times until we answer those three questions. In this room. Today." },
     { dmg: 30, text: "If the reward for doing this well is getting reassigned to something I've never touched, I need you to explain to me why I should go all in. I'm not being difficult. I'm asking you to close the loop." },
     { dmg: 20, text: "I hear you on breadth. I just need to know what finishing this one thing actually gets me before I commit to it." },
-    { dmg: 5,  text: "A Live Mas mug would genuinely help. Do you have one? I'll wait.", trap: true },
+    { dmg: 10,  text: "A Live Mas mug would genuinely help. Do you have one? I'll wait.", trap: true },
   ],
   'Job Char. Model': [
-    { dmg: 40, text: "I need three things before I start: one coach who stays with me through launch, real authority over the brief — not advisory, actual authority — and a way to know when I've done this right. If any of those aren't in place, I will fail the same way the last six leads failed. I am telling you this now so we can fix it now." },
+    { dmg: 50, text: "I need three things before I start: one coach who stays with me through launch, real authority over the brief — not advisory, actual authority — and a way to know when I've done this right. If any of those aren't in place, I will fail the same way the last six leads failed. I am telling you this now so we can fix it now." },
     { dmg: 30, text: "You can't hand me the keys and rotate my manager out in four months. Pick one. Either I'm in charge or I'm not. Right now I'm just alone." },
     { dmg: 20, text: "I know the breadth is the point. I just need this one thing to actually own. Give me that and I'll deliver." },
-    { dmg: 5,  text: "Another stretch assignment sounds great, honestly. Six products in three years — I'm basically an enterprise athlete at this point.", trap: true },
+    { dmg: 10,  text: "Another stretch assignment sounds great, honestly. Six products in three years — I'm basically an enterprise athlete at this point.", trap: true },
   ],
   'Crowding Out': [
-    { dmg: 40, text: "Pull the completion bonus. Pull the check-in templates. I don't need to be watched to care about this — I cared before you set up the spreadsheet. The moment you made it a transaction, you told me caring was a job, not a commitment. Give me the work back and get out of the way." },
+    { dmg: 50, text: "Pull the completion bonus. Pull the check-in templates. I don't need to be watched to care about this — I cared before you set up the spreadsheet. The moment you made it a transaction, you told me caring was a job, not a commitment. Give me the work back and get out of the way." },
     { dmg: 30, text: "Every oversight mechanism you've added is telling me you don't trust me. I heard you. So I've been managing your reporting instead of running the campaign. Tell me which one you actually want." },
     { dmg: 20, text: "I don't need a bonus to want this to succeed. I need the work to mean something when it's done. Let it mean something." },
-    { dmg: 5,  text: "A Taco Bell gift card would be incredible. I would use it immediately and feel very motivated.", trap: true },
+    { dmg: 10,  text: "A Taco Bell gift card would be incredible. I would use it immediately and feel very motivated.", trap: true },
   ],
   'Folly: A→B': [
-    { dmg: 40, text: "Tell me what's on my review. Adaptable. Enterprise mindset. Embraces change. Nothing about whether the campaign shipped. Nothing about whether it worked. If you want me to stay and own this, that outcome has to show up in what I'm evaluated on. Change the metric or I will keep optimizing for what you're measuring." },
+    { dmg: 50, text: "Tell me what's on my review. Adaptable. Enterprise mindset. Embraces change. Nothing about whether the campaign shipped. Nothing about whether it worked. If you want me to stay and own this, that outcome has to show up in what I'm evaluated on. Change the metric or I will keep optimizing for what you're measuring." },
     { dmg: 30, text: "Why would I fight to stay on a brief when staying doesn't help my rating and leaving doesn't hurt it? I'm not disloyal. I'm rational. You built the system." },
     { dmg: 20, text: "I'm not saying anyone here is malicious. I'm saying the system is rewarding the wrong thing and everyone can see it. Including me." },
-    { dmg: 5,  text: "If we just add a campaign completion checkbox to the review, item nine of twelve — I think that fully solves it.", trap: true },
+    { dmg: 10,  text: "If we just add a campaign completion checkbox to the review, item nine of twelve — I think that fully solves it.", trap: true },
   ],
   'Tight / Loose': [
-    { dmg: 40, text: "I want this relaunch treated the same way you treat the salmonella policy — non-negotiable ownership, defined criteria, one lead from brief to launch. I am not rotating mid-campaign. Lock it now. You already know how to enforce rules when you want to. Do it here." },
+    { dmg: 50, text: "I want this relaunch treated the same way you treat the salmonella policy — non-negotiable ownership, defined criteria, one lead from brief to launch. I am not rotating mid-campaign. Lock it now. You already know how to enforce rules when you want to. Do it here." },
     { dmg: 30, text: "You kept the inventor of the Doritos Locos Taco on the account until it shipped a billion dollars. That wasn't luck. Someone made that call. Make the same call for me right now." },
     { dmg: 20, text: "I'm asking for the same seriousness you give the supply chain. Just apply it to who owns the brand. That's it." },
-    { dmg: 5,  text: "If we do a new onboarding module I think people would feel more settled. Better font this time.", trap: true },
+    { dmg: 10,  text: "If we do a new onboarding module I think people would feel more settled. Better font this time.", trap: true },
   ],
   'Network Shape': [
-    { dmg: 40, text: "I'm calling one meeting — every person who thinks they're the POC, the agency lead, the media partner. One meeting. After that, I am the single contact and everyone knows it. And you are not rotating me out before this launches. The agency has been emailing ghosts. That stops today." },
+    { dmg: 50, text: "I'm calling one meeting — every person who thinks they're the POC, the agency lead, the media partner. One meeting. After that, I am the single contact and everyone knows it. And you are not rotating me out before this launches. The agency has been emailing ghosts. That stops today." },
     { dmg: 30, text: "The agency stopped investing in these relationships because every lead rotated out within the year. I'm going to show them that's not happening this time. But I need you to actually not rotate me out." },
     { dmg: 20, text: "What's the agency lead's real name? Not Baja Blast Guy. An actual name. I need it before I leave this room." },
-    { dmg: 5,  text: "I'll start a LinkedIn group. Very engaged community. Great place to put a cover photo.", trap: true },
+    { dmg: 10,  text: "I'll start a LinkedIn group. Very engaged community. Great place to put a cover photo.", trap: true },
   ],
   'Incentive Compat.': [
-    { dmg: 40, text: "The director who pitched this needs to be on the hook for how it executes. And I need to be there for the outcome, not handed off before we find out if any of this worked. Tie the pitch to the results. No more rewarding the slide deck and moving on. If you won't do that, you're telling me nothing actually changes here." },
+    { dmg: 50, text: "The director who pitched this needs to be on the hook for how it executes. And I need to be there for the outcome, not handed off before we find out if any of this worked. Tie the pitch to the results. No more rewarding the slide deck and moving on. If you won't do that, you're telling me nothing actually changes here." },
     { dmg: 30, text: "I'm not accepting a handoff for a strategy I didn't write without the person who wrote it on a call first. Either they explain it to me or we rewrite it together. I'm not holding the bag for someone else's decisions." },
     { dmg: 20, text: "At minimum, everyone who made a decision on this brief in the last six months needs to be in a room before I make the next one. Set that up." },
-    { dmg: 5,  text: "Thirty minutes, I'll take good notes, we share the link — I think a really thoughtful handoff fixes most of this.", trap: true },
+    { dmg: 10,  text: "Thirty minutes, I'll take good notes, we share the link — I think a really thoughtful handoff fixes most of this.", trap: true },
   ],
 };
 
@@ -121,7 +121,7 @@ const ALL_FRAMEWORKS = ['Expectancy Theory', 'Job Char. Model', 'Crowding Out', 
 const FIT = { STRONG: 'STRONG', FIT: 'FIT', NEUTRAL: 'NEUTRAL', MISFIT: 'MISFIT' };
 
 // Outgoing damage multipliers (player → boss)
-const FIT_DMG_OUT = { STRONG: 1.5, FIT: 0.6, NEUTRAL: 0.4, MISFIT: 0.3 };
+const FIT_DMG_OUT = { STRONG: 2.0, FIT: .8, NEUTRAL: 0.6, MISFIT: 0.4 };
 // Incoming retort multipliers (boss → player)
 const FIT_DMG_IN  = { STRONG: 0.5, FIT: 0.8, NEUTRAL: 1.0, MISFIT: 1.4 };
 // Boss self-heal multipliers
@@ -161,7 +161,7 @@ const MENTOR_CALL_LINES = [
 const BOSSES = {
   quesarito: {
     name: 'THE QUESARITO',
-    tileCode: 6, hp: 150, sprite: 'quesarito',
+    tileCode: 6, hp: 100, sprite: 'quesarito',
     issue: 'Two different brand leads. Three strategies. One live campaign. Nobody knows which inputs drive the outcome because nobody\'s stayed long enough to find out. The media partner has been emailing Jordan for six weeks. Jordan works at Chipotle now.',
     reward: 'Mild Sauce Packet',
     unlocks: 'Network Shape',
@@ -187,7 +187,7 @@ const BOSSES = {
   },
   baja_blast: {
     name: 'BAJA BLAST',
-    tileCode: 7, hp: 150, sprite: 'baja_blast',
+    tileCode: 7, hp: 100, sprite: 'baja_blast',
     issue: 'The agency has sent the same activation deck to four different people in two weeks. All four think they are the brand lead. They have never met each other. Nobody told the agency.',
     reward: 'Hot Sauce Packet',
     unlocks: ['Job Char. Model', 'Crowding Out'],
@@ -213,7 +213,7 @@ const BOSSES = {
   },
   mexican_pizza: {
     name: 'THE OG CRUNCHY TACO',
-    tileCode: 8, hp: 150, sprite: 'og_crunchy_taco',
+    tileCode: 8, hp: 100, sprite: 'og_crunchy_taco',
     issue: 'The cross-functional partners have worked with six brand leads in four years. Every bonus and check-in the org added to re-engage them made it worse. They are not difficult. They are just done.',
     reward: 'Fire Sauce Packet',
     unlocks: ['Tight / Loose', 'Folly: A→B'],
@@ -239,7 +239,7 @@ const BOSSES = {
   },
   og_crunchy_taco: {
     name: 'THE MEXICAN PIZZA',
-    tileCode: 5, hp: 150, sprite: 'mexican_pizza',
+    tileCode: 5, hp: 100, sprite: 'mexican_pizza',
     issue: 'High visibility relaunch. Hard deadline. The org rewarded the last lead for being adaptable and rotated them eight months before launch. Nobody left a note. The new lead Google searched the launch date. It was in the press release.',
     reward: 'Diablo Sauce Packet',
     unlocks: ['Incentive Compat.'],
