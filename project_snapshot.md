@@ -1,3 +1,121 @@
+# TACO BELL BATTLER2 - Project Snapshot
+
+
+## FILE: index.html
+```n
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Taco Bell Framework Battler</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&family=Montserrat:wght@500;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="game-shell">
+    <div id="game-header">
+      <h1>🌮 Taco Bell Framework Battler</h1>
+      <p class="subtitle">A boss-rush RPG of org dysfunction. WASD/arrows to move · Space/Enter to confirm · Esc to back out</p>
+    </div>
+    <canvas id="game" width="960" height="704"></canvas>
+    <div id="game-footer">
+      <span>Defeat the menu items. Reveal the system.</span>
+    </div>
+  </div>
+  <script src="game2.js"></script>
+</body>
+</html>
+
+```n
+
+## FILE: style.css
+```n
+:root {
+  --bell-purple: #702082;
+  --baja-teal: #10b5cb;
+  --cheese-gold: #ffc627;
+  --cubicle-beige: #eae6df;
+  --fire-red: #d62300;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: #1a0a1f;
+  color: var(--cubicle-beige);
+  font-family: "Montserrat", system-ui, sans-serif;
+  overflow: hidden;
+}
+
+#game-shell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 12px;
+  gap: 10px;
+}
+
+#game-header {
+  text-align: center;
+}
+
+#game-header h1 {
+  font-family: "Fugaz One", "Montserrat", sans-serif;
+  font-size: 28px;
+  margin: 0;
+  color: var(--cheese-gold);
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 0 var(--bell-purple);
+}
+
+.subtitle {
+  font-size: 13px;
+  margin: 4px 0 0;
+  opacity: 0.75;
+  font-family: "Roboto Mono", monospace;
+}
+
+canvas#game {
+  display: block;
+  background: #000;
+  border: 4px solid var(--bell-purple);
+  border-radius: 6px;
+  box-shadow: 0 0 0 2px var(--cheese-gold), 0 8px 24px rgba(0,0,0,0.6);
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+
+  /* Fit on screen — scale down if needed, keep aspect ratio */
+  max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 160px);
+  width: auto;
+  height: auto;
+  aspect-ratio: 960 / 704;
+}
+
+#game-footer {
+  font-family: "Roboto Mono", monospace;
+  font-size: 11px;
+  opacity: 0.5;
+}
+
+@media (max-width: 720px) {
+  #game-header h1 { font-size: 20px; }
+  .subtitle { font-size: 11px; }
+}
+
+```n
+
+## FILE: game2.js
+```n
 'use strict';
 
 /* =============================================================================
@@ -1084,7 +1202,7 @@ function finishBattle(victory) {
       og_crunchy_taco:  'BOARDROOM door is now OPEN. The Crunchwrap Supreme is the final fight.',
     }[b.bossKey];
     if (nextStep) toastParts.push(nextStep);
-    state.toast = { text: toastParts.join(' '), t: 0, dur: 6000, dismissable: true };
+    state.toast = { text: toastParts.join(' '), t: 0, dur: 6000 };
     if (b.isFinal) {
       state.mode = 'ending';
       state.ending = { t: 0 };
@@ -1307,11 +1425,11 @@ function easeInOut(t) {
 function drawOverworldHud() {
   // Top-left HP plate
   const hudX = 8, hudY = 8;
-  drawBoxFilled(hudX, hudY, 250, 56, PAL.beige, PAL.purple, 3);
+  drawBoxFilled(hudX, hudY, 220, 56, PAL.beige, PAL.purple, 3);
   drawText('GIDGET', hudX + 10, hudY + 8, { font: '14px "Montserrat", sans-serif', color: PAL.purple });
   drawHpBar(hudX + 10, hudY + 30, 140, 12, state.player.hp, state.player.maxHp, '');
   drawText(`${state.player.hp}/${state.player.maxHp}`,
-    hudX + 158, hudY + 36,
+    hudX + 148, hudY + 36,
     { font: FONT_LABEL, color: '#000', align: 'left', baseline: 'middle' });
 
   // Top-right: Diablo Sauce Packet indicator (only shown once held)
@@ -1621,7 +1739,7 @@ function drawIssueCard(b) {
     const ph = boss.phases[b.phaseIndex];
     issueText = `${ph.name}: ${ph.flavor}`;
   }
-  const cardW = 660;
+  const cardW = CANVAS_W - 40;
   const textFont = '16px monospace';
   const lineH = 20;
   const textMaxW = cardW - 28;
@@ -1635,7 +1753,7 @@ function drawIssueCard(b) {
     else line = test;
   }
   const cardH = 24 + lines * lineH + 6;
-  const cx = 20;
+  const cx = (CANVAS_W - cardW) / 2;
   const cy = 110;
   ctx.fillStyle = 'rgba(20,8,28,0.82)';
   ctx.fillRect(cx, cy, cardW, cardH);
@@ -1669,7 +1787,7 @@ function drawBattleBottom() {
     if (!m) return;
     drawWrappedText(m.text, bx + 24, by + 24, bw - 48, 20, messageStyle(m.style));
     drawText('▼ press SPACE', bx + bw - 140, by + bh - 24, {
-      font: '14px "Roboto Mono", monospace', color: PAL.purple,
+      font: '22px "Roboto Mono", monospace', color: PAL.purple,
       // Blink:
     });
     return;
@@ -1684,7 +1802,7 @@ function drawBattleBottom() {
 
   if (b.menu === 'frameworks') {
     drawText('FIGHT — choose a framework  (Gidget starts with only Coordination; defeat bosses to unlock the rest)',
-      bx + 24, by + 14, { font: '12px "Roboto Mono", monospace', color: PAL.purple });
+      bx + 24, by + 14, { font: '15px "Roboto Mono", monospace', color: PAL.purple });
     drawMenuGridFrameworks(ALL_FRAMEWORKS, state.unlockedFrameworks, b.menuIndex,
       bx + 24, by + 36, bw - 48, 132, 4);
     drawText('← → ↑ ↓ to choose · SPACE to confirm · ESC to back out',
@@ -1696,8 +1814,8 @@ function drawBattleBottom() {
     drawText(`${b.selectedFramework} — pick what to say:`, bx + 24, by + 24,
       { font: FONT_DLG, color: PAL.purple });
     const moves = FRAMEWORKS[b.selectedFramework];
-    const moveFont = '13px monospace';
-    const moveLineH = 16;
+    const moveFont = '15px monospace';
+    const moveLineH = 20;
     const moveMaxW = bw - 80;
     // Pre-measure each row height using plain monospace to avoid web-font timing issues
     const rowHeights = moves.map(m => {
@@ -2056,3 +2174,917 @@ loadAll().then(() => {
   ctx.font = '20px monospace';
   ctx.fillText('Asset load failed: ' + err.message, 20, 40);
 });
+
+```n
+
+## FILE: README.md
+```n
+# 🌮 Taco Bell Framework Battler
+
+A Pokémon-style boss-rush webgame where **Gidget the Chihuahua** fights menu-item bosses representing organizational dysfunctions. Defeat them using management frameworks.
+
+## Stack
+
+Pure static site — vanilla HTML5 Canvas + JS, **no build step**.
+
+```
+index.html
+style.css
+game.js
+assets/
+  map.png
+  tilemap.json
+  sprites/   (15 PNG files)
+```
+
+## Local testing
+
+From this folder:
+
+```bash
+python3 -m http.server 8000
+```
+
+Then open `http://localhost:8000`. (Or use any static server — `npx serve`, `caddy file-server`, etc. Don't open `index.html` directly via `file://` — the `fetch()` for `tilemap.json` requires HTTP.)
+
+## Deploy to Vercel
+
+Two options:
+
+### Option A — Drag and drop (no CLI)
+1. Go to https://vercel.com/new
+2. Drag this entire folder into the browser
+3. Vercel auto-detects it as a static site. Click **Deploy**. Done.
+
+### Option B — CLI
+```bash
+npm i -g vercel
+vercel        # follow prompts; accept defaults
+vercel --prod # promote to production
+```
+
+No `vercel.json` needed. No framework preset. Vercel serves `index.html` from the root and all assets from their relative paths.
+
+## Controls
+
+| Key | Action |
+|---|---|
+| WASD / Arrows | Move (overworld) · Navigate menus (battle) |
+| Space / Enter | Confirm / Advance dialog / Start game |
+| Esc / Backspace | Back out of submenu |
+
+## Gameplay
+
+- 5 bosses representing real management problems (siloed teams, burned-out veterans, change-resistant leaders, etc.)
+- 7 management frameworks unlocked as you defeat bosses. Each has 4 moves at varying damage tiers — including 5-damage "corporate cliché" traps that look authoritative but accomplish nothing.
+- **Super-effective** moves (1.5×) when the framework matches a boss's weakness — but only for substantive moves (≥20 dmg), so cliché traps never bonus.
+- The final boss (**Crunchwrap Supreme**) is **phased** — each HP threshold rotates the weakness, forcing you to use multiple frameworks in sequence.
+- Blackout (Gidget HP=0) respawns at the Lobby with full HP. Boss progress is preserved.
+
+## File reference
+
+- `game.js` — single-file game engine (~1250 lines). State machine: loading → title → overworld → battle → ending.
+- `assets/map.png` — 960×704 tilemap render (30 cols × 22 rows × 32px tiles).
+- `assets/tilemap.json` — collision grid and encounter tile codes.
+- `assets/sprites/*.png` — 32×32 overworld sprites and 64×64 battle sprites, with transparent backgrounds.
+
+## Tech notes
+
+- Uses Google Fonts (Fugaz One / Montserrat / Roboto Mono) — loads from CDN at runtime.
+- `image-rendering: pixelated` + `ctx.imageSmoothingEnabled = false` for crisp sprite scaling.
+- Browser storage (localStorage etc.) is **not** used — game state lives in memory and resets on reload. Intentional, to keep the artifact portable.
+
+```n
+
+## FILE: assets/tilemap.json
+```n
+{
+  "_comment": "Taco Bell Framework Battler \u2014 master map tilemap",
+  "image": "map.png",
+  "tile_size": 32,
+  "width": 30,
+  "height": 22,
+  "pixel_width": 960,
+  "pixel_height": 704,
+  "tile_legend": {
+    "0": "walkable_floor",
+    "1": "solid_wall_or_furniture",
+    "2": "door_unlocked",
+    "3": "door_locked_ceo (requires Diablo Sauce Packet)",
+    "4": "player_spawn (Gidget START)",
+    "5": "encounter_og_crunchy_taco",
+    "6": "encounter_quesarito",
+    "7": "encounter_baja_blast",
+    "8": "encounter_mexican_pizza",
+    "9": "encounter_crunchwrap_supreme"
+  },
+  "zones": {
+    "exec_floor": {
+      "x1": 1,
+      "y1": 1,
+      "x2": 8,
+      "y2": 7,
+      "boss": "og_crunchy_taco",
+      "conflict": "change_management"
+    },
+    "ceo_office": {
+      "x1": 10,
+      "y1": 1,
+      "x2": 19,
+      "y2": 7,
+      "boss": "crunchwrap_supreme",
+      "conflict": "systemic_phased",
+      "gated": true
+    },
+    "brand_bullpen": {
+      "x1": 21,
+      "y1": 1,
+      "x2": 28,
+      "y2": 7,
+      "boss": "quesarito",
+      "conflict": "coordination"
+    },
+    "corridor": {
+      "x1": 1,
+      "y1": 9,
+      "x2": 28,
+      "y2": 12,
+      "boss": "baja_blast",
+      "conflict": "networks"
+    },
+    "break_room": {
+      "x1": 1,
+      "y1": 14,
+      "x2": 13,
+      "y2": 20,
+      "boss": "mexican_pizza",
+      "conflict": "motivation"
+    },
+    "onboarding_lobby": {
+      "x1": 15,
+      "y1": 14,
+      "x2": 28,
+      "y2": 20,
+      "boss": null,
+      "conflict": null
+    }
+  },
+  "doors": {
+    "exec": {
+      "x": 4,
+      "y": 8,
+      "locked": false,
+      "leads_to": "exec_floor",
+      "width": 1
+    },
+    "ceo": {
+      "x": 14,
+      "y": 8,
+      "locked": true,
+      "leads_to": "ceo_office",
+      "unlock_key": "diablo_sauce_packet",
+      "width": 2
+    },
+    "brand": {
+      "x": 24,
+      "y": 8,
+      "locked": false,
+      "leads_to": "brand_bullpen",
+      "width": 1
+    },
+    "break": {
+      "x": 7,
+      "y": 13,
+      "locked": false,
+      "leads_to": "break_room",
+      "width": 1
+    },
+    "lobby": {
+      "x": 22,
+      "y": 13,
+      "locked": false,
+      "leads_to": "onboarding_lobby",
+      "width": 1
+    }
+  },
+  "spawn_point": {
+    "x": 22,
+    "y": 19,
+    "facing": "up"
+  },
+  "palette": {
+    "bell_purple": "#702082",
+    "baja_teal": "#10B5CB",
+    "cheese_gold": "#FFC627",
+    "cubicle_beige": "#EAE6DF",
+    "fire_red": "#D62300"
+  },
+  "tiles": [
+    [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      0,
+      1,
+      1,
+      0,
+      1,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      1,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      1,
+      1,
+      1,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      6,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      1,
+      1,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      1,
+      1,
+      0,
+      0,
+      5,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      9,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      0,
+      1,
+      1,
+      0,
+      1,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      3,
+      3,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      2,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      7,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      8,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      4,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ]
+  ]
+}
+
+```n
